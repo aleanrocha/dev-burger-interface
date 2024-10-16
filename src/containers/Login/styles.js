@@ -55,7 +55,7 @@ export const Title = styled.h2`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: calc(1.7rem - 10px);
   width: 100%;
   max-width: 400px;
 `
@@ -79,6 +79,17 @@ export const FormControl = styled.div`
     font-size: 1.1rem;
     font-weight: 600;
   }
+  & > span {
+    font-size: 0.9rem;
+    color: #ff5f5f;
+    font-weight: 600;
+    height: 10px;
+  }
+  ${(props) => props.$inputError && `
+    & > input {
+      outline: 2px solid  #ff5f5f !important;
+    }
+  `}
 `
 export const Text = styled.p`
   text-align: center;
