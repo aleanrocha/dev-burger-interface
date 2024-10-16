@@ -2,7 +2,7 @@ import {
   Form,
   FormControl,
   LeftContainer,
-  Link,
+  Text,
   LoginContainer,
   RightContainer,
   Title,
@@ -17,8 +17,8 @@ export const Login = () => {
       </LeftContainer>
       <RightContainer>
         <Title>
-          Olá, seja bem vindo ao <span>Dev Burguer!</span> Acesse com seu
-          <span>Login e senha.</span>
+          Olá, seja bem vindo ao <span>Dev Burguer!</span> <br /> Acesse com seu
+          <span> Login e senha.</span>
         </Title>
         <Form>
           <FormControl>
@@ -34,7 +34,9 @@ export const Login = () => {
             />
           </FormControl>
         </Form>
-        <Link href="#">Não possui conta? Clique aqui.</Link>
+        <Text>
+          Não possui conta? <a href="#">Clique aqui.</a>
+        </Text>
       </RightContainer>
     </LoginContainer>
   )

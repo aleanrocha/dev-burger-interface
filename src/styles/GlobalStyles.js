@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
     outline: none;
+    font-family: "Poppins", sans-serif;
   }
   button {
     cursor: pointer;
