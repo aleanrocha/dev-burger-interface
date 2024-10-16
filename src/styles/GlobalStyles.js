@@ -15,7 +15,4 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     transition: 0.3s;
   }
-  img {
-    width: 100%;
-  }
 `
