@@ -7,6 +7,7 @@ import {
   RightContainer,
   Title,
 } from './styles'
+import { Button } from '../../components/Button'
 import logoDevBurger from '../../assets/logo-login.png'
 
 export const Login = () => {
@@ -33,6 +34,7 @@ export const Login = () => {
               placeholder="Digite sua senha"
             />
           </FormControl>
+          <Button text='Entrar' type='submit' />
         </Form>
         <Text>
           Não possui conta? <a href="#">Clique aqui.</a>
