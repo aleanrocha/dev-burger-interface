@@ -9,6 +9,9 @@ export const LoginContainer = styled.section`
   height: 100vh;
   background-color: #252525;
   color: #fff;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 export const LeftContainer = styled.div`
   background: url('${bgLogin1}') no-repeat center / cover;
@@ -19,6 +22,9 @@ export const LeftContainer = styled.div`
   & > img {
     width: 60%;
   }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 export const RightContainer = styled.div`
   background: url('${bgLogin2}') center / cover;
@@ -28,6 +34,10 @@ export const RightContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 100vh;
+  }
 `
 export const Title = styled.h2`
   text-align: center;
@@ -37,6 +47,9 @@ export const Title = styled.h2`
   & > span {
     font-family: 'Road Rage', sans-serif;
     color: #9758a6;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
   }
 `
 export const Form = styled.form`
@@ -70,7 +83,7 @@ export const FormControl = styled.div`
 export const Text = styled.p`
   text-align: center;
   font-weight: 600;
-  margin-top: 1.7rem;
+  margin-top: 1rem;
   & > a {
     color: #fff;
     text-decoration: underline;
