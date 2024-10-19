@@ -3,7 +3,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {
   Form,
-  FormControl,
   LeftContainer,
   Text,
   LoginContainer,
@@ -11,6 +10,7 @@ import {
   Title,
 } from './styles'
 import { Button } from '../../components/Button'
+import { FormControl } from '../../components/FormControl'
 import logoDevBurger from '../../assets/logo-login.png'
 
 const loginSchema = yup.object({
@@ -41,26 +41,22 @@ export const Login = () => {
           <span> Login e senha.</span>
         </Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl $inputError={errors.email?.message}>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Digite seu email"
-              {...register('email')}
-            />
-            <span>{errors.email?.message}</span>
-          </FormControl>
-          <FormControl $inputError={errors.password?.message}>
-            <label htmlFor="password">Senha:</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Digite sua senha"
-              {...register('password')}
-            />
-            <span>{errors.password?.message}</span>
-          </FormControl>
+          <FormControl
+            inputError={errors.email?.message}
+            labelInfo="Email"
+            placeholder="Digite seu email"
+            inputType="email"
+            idFor="email"
+            register={register}
+          />
+          <FormControl
+            inputError={errors.password?.message}
+            idFor="password"
+            labelInfo="Senha"
+            inputType="password"
+            placeholder="Digite sua senha"
+            register={register}
+          />
           <Button text="Entrar" type="submit" />
         </Form>
         <Text>
