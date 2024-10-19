@@ -17,7 +17,7 @@ export const FormControl = (props) => {
 }
 
 FormControl.propTypes = {
-  inputError: PropTypes.object,
+  inputError: PropTypes.node,
   labelInfo: PropTypes.string,
   inputType: PropTypes.string,
   idFor: PropTypes.string,
