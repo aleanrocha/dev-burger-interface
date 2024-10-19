@@ -9,6 +9,7 @@ import {
   RightContainer,
   Title,
 } from './styles'
+import { api } from '../../services/api'
 import { Button } from '../../components/Button'
 import { FormControl } from '../../components/FormControl'
 import logoDevBurger from '../../assets/logo-login.png'
@@ -27,8 +28,9 @@ export const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) })
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async (data) => {
+    const res = await api.post('/session', data)
+    console.log(res.status)
   }
   return (
     <LoginContainer>
