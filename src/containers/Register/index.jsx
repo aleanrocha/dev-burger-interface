@@ -28,7 +28,7 @@ const registerSchema = yup.object({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password')], 'As senhas devem ser iguais')
-    .required('Confirmar senha obrigatória')
+    .required('Confirmar senha obrigatória'),
 })
 
 export const Register = () => {
@@ -39,18 +39,27 @@ export const Register = () => {
   } = useForm({ resolver: yupResolver(registerSchema) })
   const onSubmit = async (data) => {
     try {
-      await toast.promise(api.post('/users', {
-        name: data.name,
-        email: data.email,
-        password: data.password
-      }),
-      {
-        pending: 'Cadastrando, aguarde!',
-        success: 'Cadastro realizado com sucesso!',
-        error: 'Ops, deu ruim! Tente novamente.'
-      })
+      const { status } = await api.post(
+        '/users',
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        },
+        {
+          validateStatus: () => true,
+        }
+      )
+      if (status === 200 || status === 201) {
+        toast.success('Cadastro realizado com sucesso!')
+      } else if (status === 409) {
+        toast.error('Email já cadastrado!')
+      } else {
+        throw new Error()
+      }
     } catch (error) {
-      console.log('Deu ruim', error.response.data)
+      toast.error('Erro no servidor, tente novamente!')
+      console.log(error.response?.data)
     }
   }
   return (
