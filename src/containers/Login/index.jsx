@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { toast } from 'react-toastify'
 import * as yup from 'yup'
 import {
   Form,
@@ -29,8 +30,15 @@ export const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) })
   const onSubmit = async (data) => {
-    const res = await api.post('/session', data)
-    console.log(res.status)
+    try {
+      await toast.promise(api.post('/session', data), {
+        pending: 'Verificando, aguarde!',
+        success: 'LOgin realizado com sucesso!',
+        error: 'Email ou senha incorretos!'
+      })
+    } catch (error) {
+      console.log('Deu ruim', error.response.data)
+    }
   }
   return (
     <LoginContainer>
