@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { toast } from 'react-toastify'
 import * as yup from 'yup'
+
 import {
   Form,
   LeftContainer,
@@ -11,10 +13,11 @@ import {
   RightContainer,
   Title,
 } from './styles'
+
+import logoDevBurger from '../../assets/logo-login.png'
 import { api } from '../../services/api'
 import { Button } from '../../components/Button'
 import { FormControl } from '../../components/FormControl'
-import logoDevBurger from '../../assets/logo-login.png'
 
 const loginSchema = yup.object({
   email: yup.string().email('Email inválido').required('Email obrigatório'),
@@ -26,6 +29,7 @@ const loginSchema = yup.object({
 
 export const Login = () => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -47,6 +51,7 @@ export const Login = () => {
       setLoading(false)
       if (status === 200 || status === 201) {
         toast.success('Login realizado com sucesso!')
+        setTimeout(() => navigate('/home'), 2000)
       } else if (status === 401) {
         toast.error('Email ou senha incorretos!')
       } else {
@@ -87,7 +92,7 @@ export const Login = () => {
           <Button text="Entrar" isLoading={loading} type="submit" />
         </Form>
         <Text>
-          Não possui conta? <a href="#">Clique aqui.</a>
+          Não possui conta? <Link to={'/registrar'}>Registre-se</Link>
         </Text>
       </RightContainer>
     </LoginContainer>

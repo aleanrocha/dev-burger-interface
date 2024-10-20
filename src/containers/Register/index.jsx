@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+
 import {
   Form,
   LeftContainer,
@@ -10,9 +12,10 @@ import {
   RightContainer,
   Title,
 } from './styles'
+
+import logoDevBurger from '../../assets/logo-login.png'
 import { Button } from '../../components/Button'
 import { FormControl } from '../../components/FormControl'
-import logoDevBurger from '../../assets/logo-login.png'
 import { toast } from 'react-toastify'
 import { api } from '../../services/api'
 
@@ -34,6 +37,7 @@ const registerSchema = yup.object({
 
 export const Register = () => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -56,6 +60,7 @@ export const Register = () => {
       setLoading(false)
       if (status === 200 || status === 201) {
         toast.success('Cadastro realizado com sucesso!')
+        setTimeout(() => navigate('/entrar'), 2000)
       } else if (status === 409) {
         toast.error('Email já cadastrado!')
       } else {
@@ -109,7 +114,7 @@ export const Register = () => {
           <Button text="Cadastrar" isLoading={loading} type="submit" />
         </Form>
         <Text>
-          Já possui conta? <a href="#">Faça login</a>
+          Já possui conta? <Link to={'/entrar'}>Faça login</Link>
         </Text>
       </RightContainer>
     </RegisterContainer>
