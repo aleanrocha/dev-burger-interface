@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { toast } from 'react-toastify'
@@ -24,6 +25,7 @@ const loginSchema = yup.object({
 })
 
 export const Login = () => {
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -31,13 +33,28 @@ export const Login = () => {
   } = useForm({ resolver: yupResolver(loginSchema) })
   const onSubmit = async (data) => {
     try {
-      await toast.promise(api.post('/session', data), {
-        pending: 'Verificando, aguarde!',
-        success: 'LOgin realizado com sucesso!',
-        error: 'Email ou senha incorretos!'
-      })
+      setLoading(true)
+      const { status } = await api.post(
+        '/session',
+        {
+          email: data.email,
+          password: data.password,
+        },
+        {
+          validateStatus: () => true,
+        }
+      )
+      setLoading(false)
+      if (status === 200 || status === 201) {
+        toast.success('Login realizado com sucesso!')
+      } else if (status === 401) {
+        toast.error('Email ou senha incorretos!')
+      } else {
+        throw new Error()
+      }
     } catch (error) {
-      console.log('Deu ruim', error.response.data)
+      toast.error('Erro no servidor, tente novamente!')
+      console.log(error.response?.data)
     }
   }
   return (
@@ -67,7 +84,7 @@ export const Login = () => {
             placeholder="Digite sua senha"
             register={register}
           />
-          <Button text="Entrar" type="submit" />
+          <Button text="Entrar" isLoading={loading} type="submit" />
         </Form>
         <Text>
           Não possui conta? <a href="#">Clique aqui.</a>
