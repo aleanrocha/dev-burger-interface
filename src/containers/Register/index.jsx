@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -32,6 +33,7 @@ const registerSchema = yup.object({
 })
 
 export const Register = () => {
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -39,6 +41,7 @@ export const Register = () => {
   } = useForm({ resolver: yupResolver(registerSchema) })
   const onSubmit = async (data) => {
     try {
+      setLoading(true)
       const { status } = await api.post(
         '/users',
         {
@@ -50,6 +53,7 @@ export const Register = () => {
           validateStatus: () => true,
         }
       )
+      setLoading(false)
       if (status === 200 || status === 201) {
         toast.success('Cadastro realizado com sucesso!')
       } else if (status === 409) {
@@ -102,7 +106,7 @@ export const Register = () => {
             placeholder="Confirme sua senha"
             register={register}
           />
-          <Button text="Cadastrar" type="submit" />
+          <Button text="Cadastrar" isLoading={loading} type="submit" />
         </Form>
         <Text>
           Já possui conta? <a href="#">Faça login</a>
