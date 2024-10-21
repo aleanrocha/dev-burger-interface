@@ -5,7 +5,8 @@ export const CategoriesCarousel = () => {
   const [categories, setCategories] = useState([])
   useEffect(() => {
     const loadCategories = async () => {
-      const res = await api.get('/categories')
+      const { data } = await api.get('/categories')
+      setCategories(data)
       console.log(res)
     }
     loadCategories()

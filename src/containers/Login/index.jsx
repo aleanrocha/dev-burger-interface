@@ -38,7 +38,7 @@ export const Login = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true)
-      const { status } = await api.post(
+      const { status, data: resData } = await api.post(
         '/session',
         {
           email: data.email,
@@ -57,6 +57,7 @@ export const Login = () => {
       } else {
         throw new Error()
       }
+      localStorage.setItem('token', resData.token)
     } catch (error) {
       toast.error('Erro no servidor, tente novamente!')
       console.log(error.response?.data)
