@@ -30,4 +30,6 @@ export const Container = styled.section`
   min-height: 50vh;
 
 `
-export const Content = styled.div``
+export const Content = styled.div`
+  padding-bottom: 4rem;
+`
