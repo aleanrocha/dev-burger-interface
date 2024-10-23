@@ -26,7 +26,7 @@ export const Banner = styled.div`
   }
 `
 export const Container = styled.section`
-  background: #fafafa url('${background}');
+  background: #252525 url('${background}');
   min-height: 50vh;
 
 `
