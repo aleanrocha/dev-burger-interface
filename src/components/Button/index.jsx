@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import { GlobalButton } from './styles'
 
-export const Button = ({ text, type, isLoading }) => {
+export const Button = ({ text, type, isLoading, children }) => {
   return (
     <GlobalButton type={type} $loading={isLoading}>
-      {!isLoading && text}
+      {!isLoading && text || children}
     </GlobalButton>
   )
 }
@@ -13,4 +13,5 @@ Button.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
   isLoading: PropTypes.bool,
+  children: PropTypes.node
 }
