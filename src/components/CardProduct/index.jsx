@@ -10,7 +10,7 @@ export const CardProduct = ({ product }) => {
       <Image src={product.url} alt={product.name} />
       <div>
         <h3>{product.name}</h3>
-        <p>{product.price}</p>
+        <p>{product.formatedPrice}</p>
       </div>
       <Button type='button'><img src={iconCart} alt="Icone de adicionar ao carrinho" /></Button>
     </Container>
