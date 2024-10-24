@@ -5,6 +5,7 @@ export const Container = styled.div`
   overflow-x: hidden;
   .carousel-item {
     padding: 2rem;
+    cursor: grab;
   }
   .react-multi-carousel-list {
     overflow: visible;
@@ -18,6 +19,7 @@ export const Title = styled.h2`
   text-transform: uppercase;
   margin: 4rem 0 3rem;
   padding-bottom: 0.5rem;
+  font-weight: 800;
   position: relative;
   &::after {
     content: '';

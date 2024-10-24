@@ -4,15 +4,18 @@ import 'react-multi-carousel/lib/styles.css'
 export const Container = styled.div`
   .carousel-item {
     padding: 2rem;
+    cursor: grab;
   }
+
 `
 export const Title = styled.h2`
   color: #9758a6;
   text-align: center;
   font-size: 2rem;
-  font-weight: bolder;
+  font-weight: 800;
   text-transform: uppercase;
-  padding: 2rem 0 0.5rem;
+  padding: 3rem 0 0.5rem;
+  margin-bottom: 1rem;
   position: relative;
   &::after {
     content: '';

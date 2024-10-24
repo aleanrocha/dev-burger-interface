@@ -5,7 +5,7 @@ export const Container = styled.div`
   gap: 1rem;
   padding: 1rem;
   border-radius: 1.7rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid #9758a6;
   text-align: center;
   position: relative;
   & > div {
