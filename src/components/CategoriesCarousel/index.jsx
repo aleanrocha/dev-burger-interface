@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Carousel from 'react-multi-carousel'
 
 import { Container, Title, ContainerItens } from './styles'
@@ -13,6 +14,18 @@ export const CategoriesCarousel = () => {
     }
     loadCategories()
   }, [])
+  const navigate = useNavigate()
+  const navigateToMenu = (categoryId) => {
+    navigate(
+      {
+        pathname: '/cardapio',
+        search: `?categoria=${categoryId}`,
+      },
+      {
+        replace: true,
+      }
+    )
+  }
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -42,8 +55,14 @@ export const CategoriesCarousel = () => {
       >
         {categories &&
           categories.map((category) => (
-            <ContainerItens key={category.id} $imageUrl={category.url}>
-              <p>{category.name}</p>
+            <ContainerItens
+              key={category.id}
+              $imageUrl={category.url}
+              onClick={() => navigateToMenu(category.id)}
+            >
+              <p>
+                {category.name}
+              </p>
             </ContainerItens>
           ))}
       </Carousel>

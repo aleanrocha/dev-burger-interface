@@ -42,5 +42,9 @@ export const ContainerItens = styled.div`
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 5rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #9750a6;
+    }
   }
 `
