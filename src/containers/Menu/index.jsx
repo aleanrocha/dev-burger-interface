@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'
 
 import {
@@ -14,6 +15,10 @@ import { formatCurrency } from '../../utils/formatCurrency'
 export const Menu = () => {
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [activeCategory, setActiveCategory] = useState(0)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -26,11 +31,22 @@ export const Menu = () => {
     }
     const loadCategories = async () => {
       const { data } = await api.get('/categories')
-      setCategories(data)
+      setCategories([{id: 0, name: 'Todas'}, ...data])
     }
     loadProducts()
     loadCategories()
   }, [])
+
+  useEffect(() => {
+    if (activeCategory === 0) {
+      setFilteredProducts(products)
+    } else {
+      const newProducts = products.filter(
+        (product) => product.category_id === activeCategory
+      )
+      setFilteredProducts(newProducts)
+    }
+  }, [products, activeCategory])
   return (
     <Container>
       <Banner>
@@ -47,12 +63,27 @@ export const Menu = () => {
         <CategoryMenu>
           {categories &&
             categories.map((category) => (
-              <CategoryButton key={category.id}>{category.name}</CategoryButton>
+              <CategoryButton
+                key={category.id}
+                $isActiveCategory={activeCategory === category.id}
+                onClick={() => {
+                  navigate(
+                    {
+                      pathname: '/cardapio',
+                      search: `?categoria=${category.id}`,
+                    },
+                    { replace: true }
+                  ),
+                    setActiveCategory(category.id)
+                }}
+              >
+                {category.name}
+              </CategoryButton>
             ))}
         </CategoryMenu>
         <div>
-          {products &&
-            products.map((product) => (
+          {filteredProducts &&
+            filteredProducts.map((product) => (
               <CardProduct key={product.id} product={product} />
             ))}
         </div>

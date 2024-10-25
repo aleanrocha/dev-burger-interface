@@ -66,6 +66,8 @@ export const CategoryButton = styled(Link)`
   color: #fff;
   font-weight: 600;
   text-transform: uppercase;
+  border-bottom: 3px solid
+    ${(props) => (props.$isActiveCategory ? '#9750a6' : 'transparent')};
   &:hover {
     color: #9750a6;
   }
