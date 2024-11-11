@@ -6,7 +6,7 @@ import background from '../../assets/bg-login-2.png'
 export const Banner = styled.div`
   background: #252525 url('${bannerHome}') no-repeat center / cover;
   color: #fff;
-  height: 50vh;
+  height: 480px;
   position: relative;
   & > h1 {
     text-align: right;
@@ -17,7 +17,7 @@ export const Banner = styled.div`
     right: 10%;
   }
   @media screen and (max-width: 580px) {
-    height: 35vh;
+    height: 250px;
     background-position: left left;
     & > h1 {
       font-size: 2rem;
