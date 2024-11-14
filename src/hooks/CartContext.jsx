@@ -32,6 +32,7 @@ export const CartProvider = ({ children }) => {
     const newCart = cartProducts.map((prd) => {
       return prd.id === productId ? {...prd, quantity: prd.quantity + 1} : prd
     })
+    setCartProducts(newCart)
   }
   const decreaseProduct = (productId) => {}
   return (
