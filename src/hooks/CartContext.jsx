@@ -28,7 +28,11 @@ export const CartProvider = ({ children }) => {
     const newCart = cartProducts.filter((prd) => prd.id !== productId)
     setCartProducts(newCart)
   }
-  const increaseProduct = (productId) => {}
+  const increaseProduct = (productId) => {
+    const newCart = cartProducts.map((prd) => {
+      return prd.id === productId ? {...prd, quantity: prd.quantity + 1} : prd
+    })
+  }
   const decreaseProduct = (productId) => {}
   return (
     <CartContext.Provider
