@@ -12,39 +12,49 @@ export const CartProvider = ({ children }) => {
       newProductsInCart = cartProducts
       newProductsInCart[cartIndex].quantity++
       setCartProducts(newProductsInCart)
+      updateLocalStorage(newProductsInCart)
     } else {
       product.quantity = 1
       newProductsInCart = [...cartProducts, product]
       setCartProducts(newProductsInCart)
     }
   }
-
-  useEffect(() => {
-    console.log(cartProducts)
-  }, [cartProducts])
-
-  const clearCart = () => {}
+  const clearCart = () => {
+    localStorage.removeItem('devburger:cartData')
+  }
   const deleteProduct = (productId) => {
     const newCart = cartProducts.filter((prd) => prd.id !== productId)
     setCartProducts(newCart)
+    updateLocalStorage(newCart)
   }
   const increaseProduct = (productId) => {
     const newCart = cartProducts.map((prd) => {
-      return prd.id === productId ? {...prd, quantity: prd.quantity + 1} : prd
+      return prd.id === productId ? { ...prd, quantity: prd.quantity + 1 } : prd
     })
     setCartProducts(newCart)
+    updateLocalStorage(newCart)
   }
   const decreaseProduct = (productId) => {
     const cartIndex = cartProducts.findIndex((prd) => prd.id === productId)
     if (cartProducts[cartIndex].quantity > 1) {
       const newCart = cartProducts.map((prd) => {
-        return prd.id === productId ? {...prd, quantity: prd.quantity - 1} : prd
+        return prd.id === productId
+          ? { ...prd, quantity: prd.quantity - 1 }
+          : prd
       })
       setCartProducts(newCart)
+      updateLocalStorage(newCart)
     } else {
       deleteProduct(productId)
     }
   }
+  const updateLocalStorage = (cartData) => {
+    localStorage.setItem('devburger:cartData', JSON.stringify(cartData))
+  }
+  useEffect(() => {
+    const cartData = localStorage.getItem('devburger:cartData')
+    setCartProducts(cartData)
+  }, [])
   return (
     <CartContext.Provider
       value={{
