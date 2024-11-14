@@ -1,24 +1,12 @@
 import styled from 'styled-components'
 
-import bannerCart from '../../assets/banner-cart.png'
+import background from '../../assets/bg-login-2.png'
 
 export const CartContainer = styled.section`
-  background-color: #252525;
+  background: #252525 url('${background}');
   width: 100%;
   min-height: 100vh;
 `
-
-export const Banner = styled.div`
-  background: #252525 url('${bannerCart}') no-repeat center / cover;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & > img {
-    width: 200px;
-  }
-`
-
 export const Title = styled.h2`
   color: #61a120;
   text-align: center;

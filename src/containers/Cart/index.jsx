@@ -1,13 +1,11 @@
-import logo from '../../assets/logo-login.png'
+import { CartContainer, Title, Content } from './styles'
 
-import { CartContainer, Banner, Title, Content } from './styles'
+import { CartBanner } from '../../components/CartBanner'
 
 export const Cart = () => {
   return (
     <CartContainer>
-      <Banner>
-        <img src={logo} alt="Logo DevBUrger" />
-      </Banner>
+      <CartBanner />
       <Title>Finalizar pedido</Title>
       <Content>
         {/*<CartItems />*/}
