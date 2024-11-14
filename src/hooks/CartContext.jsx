@@ -24,7 +24,10 @@ export const CartProvider = ({ children }) => {
   }, [cartProducts])
 
   const clearCart = () => {}
-  const deleteProduct = (productId) => {}
+  const deleteProduct = (productId) => {
+    const newCart = cartProducts.filter((prd) => prd.id !== productId)
+    setCartProducts(newCart)
+  }
   const increaseProduct = (productId) => {}
   const decreaseProduct = (productId) => {}
   return (
