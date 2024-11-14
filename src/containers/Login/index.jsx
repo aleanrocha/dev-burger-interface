@@ -14,6 +14,8 @@ import {
   Title,
 } from './styles'
 
+import { useUser } from '../../hooks/UserContext'
+
 import logoDevBurger from '../../assets/logo-login.png'
 import { api } from '../../services/api'
 import { Button } from '../../components/Button'
@@ -30,6 +32,7 @@ const loginSchema = yup.object({
 export const Login = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const { putUserData } = useUser()
   const {
     register,
     handleSubmit,
@@ -57,7 +60,7 @@ export const Login = () => {
       } else {
         throw new Error()
       }
-      localStorage.setItem('token', resData.token)
+      putUserData(resData)
     } catch (error) {
       toast.error('Erro no servidor, tente novamente!')
       console.log(error.response?.data)
