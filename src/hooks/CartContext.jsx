@@ -4,8 +4,25 @@ import PropTypes from 'prop-types'
 const CartContext = createContext({})
 
 export const CartProvider = ({ children }) => {
-  const [cartProducts, setCartProducts] = useState({})
-  const putProductInCart = (product) => {}
+  const [cartProducts, setCartProducts] = useState([])
+  const putProductInCart = (product) => {
+    const cartIndex = cartProducts.findIndex((prd) => prd.id == product.id)
+    let newProductsInCart = []
+    if (cartIndex >= 0) {
+      newProductsInCart = cartProducts
+      newProductsInCart[cartIndex].quantity++
+      setCartProducts(newProductsInCart)
+    } else {
+      product.quantity = 1
+      newProductsInCart = [...cartProducts, product]
+      setCartProducts(newProductsInCart)
+    }
+  }
+
+  useEffect(() => {
+    console.log(cartProducts)
+  }, [cartProducts])
+
   const clearCart = () => {}
   const deleteProduct = (productId) => {}
   const increaseProduct = (productId) => {}
