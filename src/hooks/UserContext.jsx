@@ -36,5 +36,5 @@ export const useUser = () => {
 }
 
 UserProvider.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node.isRequired,
 }
