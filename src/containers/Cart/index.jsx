@@ -1,12 +1,12 @@
-import { CartContainer, Title, Content } from './styles'
+import { CartContainer, Content } from './styles'
 
-import { CartBanner } from '../../components'
+import { CartBanner, Title } from '../../components'
 
 export const Cart = () => {
   return (
     <CartContainer>
       <CartBanner />
-      <Title>Finalizar pedido</Title>
+      <Title text={'Checkout - pedido'} isPurple={false} />
       <Content>
         {/*<CartItems />*/}
         {/*<CartResume />*/}

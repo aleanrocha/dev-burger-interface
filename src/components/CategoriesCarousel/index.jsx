@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Carousel from 'react-multi-carousel'
 
-import { Container, Title, ContainerItens } from './styles'
+import { Container, ContainerItens } from './styles'
+import { Title } from '../Title'
 import { api } from '../../services/api'
 
 export const CategoriesCarousel = () => {
@@ -46,7 +47,7 @@ export const CategoriesCarousel = () => {
   }
   return (
     <Container>
-      <Title>Categorias</Title>
+      <Title text={'Categorias'} isPurple={true} />
       <Carousel
         responsive={responsive}
         infinite={true}

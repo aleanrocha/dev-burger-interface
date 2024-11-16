@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import Carousel from 'react-multi-carousel'
 
-import { Container, Title } from './styles'
+import { Container } from './styles'
 import { api } from '../../services/api'
 import { CardProduct } from '../CardProduct'
 import { formatCurrency } from '../../utils/formatCurrency'
+import { Title } from '../Title'
 
 export const OffersCarousel = () => {
   const [offers, setOffers] = useState([])
@@ -41,7 +42,7 @@ export const OffersCarousel = () => {
   }
   return (
     <Container>
-      <Title>Ofertas do dia</Title>
+      <Title text={'Ofertas do dia'} isPurple={false} />
       <Carousel
         responsive={responsive}
         infinite={true}

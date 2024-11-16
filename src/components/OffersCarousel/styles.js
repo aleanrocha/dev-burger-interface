@@ -3,32 +3,13 @@ import 'react-multi-carousel/lib/styles.css'
 
 export const Container = styled.div`
   overflow-x: hidden;
+  padding: 3rem 0;
   .carousel-item {
+    margin-top: 1.5rem;
     padding: 2rem;
     cursor: grab;
   }
   .react-multi-carousel-list {
     overflow: visible;
-  }
-`
-export const Title = styled.h2`
-  color: #61a120;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bolder;
-  text-transform: uppercase;
-  margin: 4rem 0 3rem;
-  padding-bottom: 0.5rem;
-  font-weight: 800;
-  position: relative;
-  &::after {
-    content: '';
-    width: 60px;
-    height: 5px;
-    background-color: #61a120;
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
   }
 `
