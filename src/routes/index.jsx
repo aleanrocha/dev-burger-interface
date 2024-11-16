@@ -1,37 +1,35 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 
 import { Home, Menu, Cart, Login, Register } from '../containers'
-import { Header, Footer } from '../components'
+import { Layout } from '../containers/layout'
+import { PrivateRoute } from './PrivateRoute'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to={'/entrar'} />,
-  },
-  {
-    path: '/home',
     element: (
-      <>
-        <Header />
-        <Home />
-        <Footer />
-      </>
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
     ),
-  },
-  {
-    path: '/cardapio',
-    element: (
-      <>
-        <Header />
-        <Menu />
-        <Footer />
-      </>
-    ),
-  },
-  
-  {
-    path: '/carrinho',
-    element: <Cart />,
+    children: [
+      {
+        path: '/',
+        element: <Navigate to={'/home'} />,
+      },
+      {
+        path: '/home',
+        element: <Home />,
+      },
+      {
+        path: '/cardapio',
+        element: <Menu />,
+      },
+      {
+        path: '/carrinho',
+        element: <Cart />,
+      },
+    ],
   },
   {
     path: '/entrar',
