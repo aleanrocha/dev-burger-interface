@@ -18,8 +18,7 @@ import { useUser } from '../../hooks/UserContext'
 
 import logoDevBurger from '../../assets/logo-login.png'
 import { api } from '../../services/api'
-import { Button } from '../../components/Button'
-import { FormControl } from '../../components/FormControl'
+import { Button, FormControl } from '../../components'
 
 const loginSchema = yup.object({
   email: yup.string().email('Email inválido').required('Email obrigatório'),

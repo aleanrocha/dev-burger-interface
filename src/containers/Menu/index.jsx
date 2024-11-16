@@ -9,7 +9,7 @@ import {
   ProductsContainer,
   CategoryButton,
 } from './styles'
-import { CardProduct } from '../../components/CardProduct'
+import { CardProduct } from '../../components'
 import { formatCurrency } from '../../utils/formatCurrency'
 
 export const Menu = () => {

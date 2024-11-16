@@ -14,8 +14,7 @@ import {
 } from './styles'
 
 import logoDevBurger from '../../assets/logo-login.png'
-import { Button } from '../../components/Button'
-import { FormControl } from '../../components/FormControl'
+import { Button, FormControl } from '../../components'
 import { toast } from 'react-toastify'
 import { api } from '../../services/api'
 

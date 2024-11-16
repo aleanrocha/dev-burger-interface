@@ -1,6 +1,6 @@
 import { CartContainer, Title, Content } from './styles'
 
-import { CartBanner } from '../../components/CartBanner'
+import { CartBanner } from '../../components'
 
 export const Cart = () => {
   return (
