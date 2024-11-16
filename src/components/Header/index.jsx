@@ -45,7 +45,7 @@ export const Header = () => {
           />
           <div>
             <h3>
-              Olá, <span>{userInfo && userInfo.name.split(' ')[0]}</span>
+              Olá, <span>{userInfo.length > 0 && userInfo.name.split(' ')[0]}</span>
             </h3>
             <Logout onClick={logoutUser}>Sair</Logout>
           </div>
