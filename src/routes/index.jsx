@@ -2,11 +2,12 @@ import { Navigate, createBrowserRouter } from 'react-router-dom'
 
 import { Home, Menu, Cart, Login, Register } from '../containers'
 import { Layout } from '../containers/layout'
+import { paths } from '../constants/paths'
 import { PrivateRoute } from './PrivateRoute'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: paths.Index,
     element: (
       <PrivateRoute>
         <Layout />
@@ -14,29 +15,29 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/',
-        element: <Navigate to={'/home'} />,
+        path: paths.Index,
+        element: <Navigate to={paths.Home} />,
       },
       {
-        path: '/home',
+        path: paths.Home,
         element: <Home />,
       },
       {
-        path: '/cardapio',
+        path: paths.Menu,
         element: <Menu />,
       },
       {
-        path: '/carrinho',
+        path: paths.Cart,
         element: <Cart />,
       },
     ],
   },
   {
-    path: '/entrar',
+    path: paths.Login,
     element: <Login />,
   },
   {
-    path: '/registrar',
+    path: paths.Register,
     element: <Register />,
   },
 ])

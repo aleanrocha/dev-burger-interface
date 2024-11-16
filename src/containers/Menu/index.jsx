@@ -11,6 +11,7 @@ import {
 } from './styles'
 import { CardProduct } from '../../components'
 import { formatCurrency } from '../../utils/formatCurrency'
+import { paths } from '../../constants/paths'
 
 export const Menu = () => {
   const [products, setProducts] = useState([])
@@ -78,7 +79,7 @@ export const Menu = () => {
                 onClick={() => {
                   navigate(
                     {
-                      pathname: '/cardapio',
+                      pathname: paths.Menu,
                       search: `?categoria=${category.id}`,
                     },
                     { replace: true }

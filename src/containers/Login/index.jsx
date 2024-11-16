@@ -15,6 +15,7 @@ import {
 } from './styles'
 
 import { useUser } from '../../hooks/UserContext'
+import { paths } from '../../constants/paths'
 
 import logoDevBurger from '../../assets/logo-login.png'
 import { api } from '../../services/api'
@@ -95,7 +96,7 @@ export const Login = () => {
           <Button text="Entrar" isLoading={loading} type="submit" />
         </Form>
         <Text>
-          Não possui conta? <Link to={'/registrar'}>Registre-se</Link>
+          Não possui conta? <Link to={paths.Register}>Registre-se</Link>
         </Text>
       </RightContainer>
     </LoginContainer>

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { Navigate } from 'react-router-dom'
+import { paths } from '../constants/paths'
 
 const isAuthenticated = () => {
   const user = JSON.parse(localStorage.getItem('devburger:userData'))
@@ -18,6 +19,7 @@ const isAuthenticated = () => {
     if (isExpired) {
       return false
     }
+  // eslint-disable-next-line no-unused-vars
   } catch (error) {
     // 4 - Se ocorrer um erro (por exemplo, na decodificação), o token é inválido
     return false
@@ -28,7 +30,7 @@ const isAuthenticated = () => {
 
 export const PrivateRoute = ({ children }) => {
   if (!isAuthenticated()) {
-    return <Navigate to={'/entrar'} />
+    return <Navigate to={paths.Login} />
   }
   return children
 }

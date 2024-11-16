@@ -17,6 +17,7 @@ import logoDevBurger from '../../assets/logo-login.png'
 import { Button, FormControl } from '../../components'
 import { toast } from 'react-toastify'
 import { api } from '../../services/api'
+import { paths } from '../../constants/paths'
 
 const registerSchema = yup.object({
   name: yup
@@ -113,7 +114,7 @@ export const Register = () => {
           <Button text="Cadastrar" isLoading={loading} type="submit" />
         </Form>
         <Text>
-          Já possui conta? <Link to={'/entrar'}>Faça login</Link>
+          Já possui conta? <Link to={paths.Login}>Faça login</Link>
         </Text>
       </RightContainer>
     </RegisterContainer>

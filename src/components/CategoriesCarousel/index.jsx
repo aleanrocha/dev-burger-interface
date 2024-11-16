@@ -5,6 +5,7 @@ import Carousel from 'react-multi-carousel'
 import { Container, ContainerItens } from './styles'
 import { Title } from '../Title'
 import { api } from '../../services/api'
+import { paths } from '../../constants/paths'
 
 export const CategoriesCarousel = () => {
   const [categories, setCategories] = useState([])
@@ -19,7 +20,7 @@ export const CategoriesCarousel = () => {
   const navigateToMenu = (categoryId) => {
     navigate(
       {
-        pathname: '/cardapio',
+        pathname: paths.Menu,
         search: `?categoria=${categoryId}`,
       },
       {

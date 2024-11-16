@@ -13,6 +13,7 @@ import {
   Logout,
   CartContent,
 } from './styles'
+import { paths } from '../../constants/paths'
 
 export const Header = () => {
   const [userConfig, setUserConfig] = useState(false)
@@ -20,17 +21,17 @@ export const Header = () => {
   const navigate = useNavigate()
   const { userInfo, logout } = useUser()
   const logoutUser = () => {
-    navigate('/entrar')
+    navigate(paths.Login)
     logout()
   }
   return (
     <HeaderContainer>
       <Navigation>
-        <NavLink to={'/home'} $isActive={pathname === '/home'}>
+        <NavLink to={paths.Home} $isActive={pathname === paths.Home}>
           Home
         </NavLink>
         <hr />
-        <NavLink to={'/cardapio'} $isActive={pathname === '/cardapio'}>
+        <NavLink to={paths.Menu} $isActive={pathname === paths.Menu}>
           Cardápio
         </NavLink>
       </Navigation>
@@ -50,7 +51,7 @@ export const Header = () => {
           </div>
         </UserContent>
         <CartContent>
-          <NavLink to={'/carrinho'}>
+          <NavLink to={paths.Cart}>
             <ShoppingCart size={30} />
           </NavLink>
           <p>Carrinho</p>
