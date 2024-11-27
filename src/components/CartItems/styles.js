@@ -7,7 +7,6 @@ export const Container = styled.div`
   border-radius: 0.7rem;
   width: 100%;
   max-width: 768px;
-  margin: 0 auto;
 `
 
 export const ProductImage = styled.img`

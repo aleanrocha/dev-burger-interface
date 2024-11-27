@@ -1,6 +1,6 @@
 import { CartContainer, Content } from './styles'
 
-import { CartBanner, Title, CartItems } from '../../components'
+import { CartBanner, Title, CartItems, CartResume } from '../../components'
 
 export const Cart = () => {
   return (
@@ -9,7 +9,7 @@ export const Cart = () => {
       <Title text={'Checkout - pedido'} isPurple={false} />
       <Content>
         <CartItems />
-        {/*<CartResume />*/}
+        <CartResume />
       </Content>
     </CartContainer>
   )
