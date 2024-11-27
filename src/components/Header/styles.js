@@ -29,6 +29,7 @@ export const UserContent = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-transform: capitalize;
   position: relative;
   & > div h3 {
     font-size: 1rem;
@@ -79,13 +80,13 @@ export const Logout = styled.button`
   font-size: 1rem;
   border: none;
   @media screen and (max-width: 580px) {
-    background-color:  #f43333;
+    background-color: #f43333;
     color: #fff;
     font-weight: bold;
     font-size: 0.8rem;
     padding: 0.2rem 2.3rem;
     border-radius: 5rem;
-    margin-top: 0.4rem
+    margin-top: 0.4rem;
   }
 `
 
@@ -104,4 +105,22 @@ export const CartContent = styled.div`
       display: none;
     }
   }
+`
+
+export const CartIcon = styled.div`
+  position: relative;
+  ${(props) =>
+    props.$itemsInCart &&
+    `
+    &::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: #f43;
+      border-radius: 50%;
+      position: absolute;
+      top: -4px;
+      right: -4px;
+    }
+  `}
 `

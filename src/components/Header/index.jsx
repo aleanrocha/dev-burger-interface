@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { UserCircle, ShoppingCart } from '@phosphor-icons/react'
 
 import { useUser } from '../../hooks/UserContext'
+import { useCart } from '../../hooks/CartContext'
 
 import {
   HeaderContainer,
@@ -12,6 +13,7 @@ import {
   UserContent,
   Logout,
   CartContent,
+  CartIcon,
 } from './styles'
 import { paths } from '../../constants/paths'
 
@@ -20,6 +22,7 @@ export const Header = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const { userInfo, logout } = useUser()
+  const { cartProducts } = useCart()
   const logoutUser = () => {
     navigate(paths.Login)
     logout()
@@ -45,14 +48,16 @@ export const Header = () => {
           />
           <div>
             <h3>
-              Olá, <span>{userInfo.length > 0 && userInfo.name.split(' ')[0]}</span>
+              Olá, <span>{userInfo?.name}</span>
             </h3>
             <Logout onClick={logoutUser}>Sair</Logout>
           </div>
         </UserContent>
         <CartContent>
           <NavLink to={paths.Cart}>
-            <ShoppingCart size={30} />
+            <CartIcon $itemsInCart={cartProducts.length}>
+              <ShoppingCart size={30} />
+            </CartIcon>
           </NavLink>
           <p>Carrinho</p>
         </CartContent>
