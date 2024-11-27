@@ -8,4 +8,7 @@ export const CartContainer = styled.section`
   min-height: 100vh;
 `
 
-export const Content = styled.div``
+export const Content = styled.div`
+  min-height: 60vh;
+  padding: 2rem 1rem 4rem;
+`
