@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 
 import { ToastContainer } from 'react-toastify'
 import { RouterProvider } from 'react-router-dom'
+import { Elements } from '@stripe/react-stripe-js'
+import { stripePromise } from './config/stripeConfig'
 import { GlobalStyles } from './styles/GlobalStyles'
 
 import { router } from './routes'
@@ -13,7 +15,9 @@ createRoot(document.getElementById('root')).render(
     <AppProvider>
       <GlobalStyles />
       <ToastContainer autoClose={2000} theme="dark" />
-      <RouterProvider router={router} />
+      <Elements stripe={stripePromise}>
+        <RouterProvider router={router} />
+      </Elements>
     </AppProvider>
   </StrictMode>
 )

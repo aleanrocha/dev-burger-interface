@@ -1,6 +1,14 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 
-import { Home, Menu, Cart, Login, Register } from '../containers'
+import {
+  Home,
+  Menu,
+  Cart,
+  Login,
+  Register,
+  Checkout,
+  CompletePayment,
+} from '../containers'
 import { Layout } from '../containers/layout'
 import { paths } from '../constants/paths'
 import { PrivateRoute } from './PrivateRoute'
@@ -29,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: paths.Cart,
         element: <Cart />,
+      },
+      {
+        path: paths.Checkout,
+        element: <Checkout />,
+      },
+      {
+        path: paths.CompletePayment,
+        element: <CompletePayment />,
       },
     ],
   },

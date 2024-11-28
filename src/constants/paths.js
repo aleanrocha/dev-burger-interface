@@ -5,4 +5,6 @@ export const paths = {
   Home: '/home',
   Menu: '/cardapio',
   Cart: '/carrinho',
+  Checkout: '/revisao-pedido',
+  CompletePayment: '/pedido-realizado'
 }
