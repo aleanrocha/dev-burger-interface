@@ -57,14 +57,8 @@ export const CategoriesCarousel = () => {
       >
         {categories &&
           categories.map((category) => (
-            <ContainerItens
-              key={category.id}
-              $imageUrl={category.url}
-              onClick={() => navigateToMenu(category.id)}
-            >
-              <p>
-                {category.name}
-              </p>
+            <ContainerItens key={category.id} $imageUrl={category.url}>
+              <p onClick={() => navigateToMenu(category.id)}>{category.name}</p>
             </ContainerItens>
           ))}
       </Carousel>
