@@ -21,6 +21,9 @@ export const GlobalButton = styled.button`
   text-transform: uppercase;
   margin: 1rem 0;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: #6f357c;
   }
