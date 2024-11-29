@@ -9,7 +9,7 @@ import {
   ProductsContainer,
   CategoryButton,
 } from './styles'
-import { CardProduct } from '../../components'
+import { CardProduct, Spinner } from '../../components'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { paths } from '../../constants/paths'
 
@@ -41,7 +41,7 @@ export const Menu = () => {
     }
     const loadCategories = async () => {
       const { data } = await api.get('/categories')
-      setCategories([{id: 0, name: 'Todas'}, ...data])
+      setCategories([{ id: 0, name: 'Todas' }, ...data])
     }
     loadProducts()
     loadCategories()
@@ -68,36 +68,40 @@ export const Menu = () => {
           <p>Esse cardápio está irresistível!</p>
         </div>
       </Banner>
-      <ProductsContainer>
-        <h2>Cardápio</h2>
-        <CategoryMenu>
-          {categories &&
-            categories.map((category) => (
-              <CategoryButton
-                key={category.id}
-                $isActiveCategory={activeCategory === category.id}
-                onClick={() => {
-                  navigate(
-                    {
-                      pathname: paths.Menu,
-                      search: `?categoria=${category.id}`,
-                    },
-                    { replace: true }
-                  ),
-                    setActiveCategory(category.id)
-                }}
-              >
-                {category.name}
-              </CategoryButton>
-            ))}
-        </CategoryMenu>
-        <div>
-          {filteredProducts &&
-            filteredProducts.map((product) => (
-              <CardProduct key={product.id} product={product} />
-            ))}
-        </div>
-      </ProductsContainer>
+      {products.length ? (
+        <ProductsContainer>
+          <h2>Cardápio</h2>
+          <CategoryMenu>
+            {categories &&
+              categories.map((category) => (
+                <CategoryButton
+                  key={category.id}
+                  $isActiveCategory={activeCategory === category.id}
+                  onClick={() => {
+                    navigate(
+                      {
+                        pathname: paths.Menu,
+                        search: `?categoria=${category.id}`,
+                      },
+                      { replace: true }
+                    ),
+                      setActiveCategory(category.id)
+                  }}
+                >
+                  {category.name}
+                </CategoryButton>
+              ))}
+          </CategoryMenu>
+          <div>
+            {filteredProducts &&
+              filteredProducts.map((product) => (
+                <CardProduct key={product.id} product={product} />
+              ))}
+          </div>
+        </ProductsContainer>
+      ) : (
+        <Spinner />
+      )}
     </Container>
   )
 }

@@ -1,21 +1,12 @@
-import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import Carousel from 'react-multi-carousel'
 
 import { Container, ContainerItens } from './styles'
 import { Title } from '../Title'
-import { api } from '../../services/api'
 import { paths } from '../../constants/paths'
 
-export const CategoriesCarousel = () => {
-  const [categories, setCategories] = useState([])
-  useEffect(() => {
-    const loadCategories = async () => {
-      const { data } = await api.get('/categories')
-      setCategories(data)
-    }
-    loadCategories()
-  }, [])
+export const CategoriesCarousel = ({ categories }) => {
   const navigate = useNavigate()
   const navigateToMenu = (categoryId) => {
     navigate(
@@ -64,4 +55,8 @@ export const CategoriesCarousel = () => {
       </Carousel>
     </Container>
   )
+}
+
+CategoriesCarousel.propTypes = {
+  categories: PropTypes.array.isRequired,
 }

@@ -1,27 +1,19 @@
-import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import Carousel from 'react-multi-carousel'
 
 import { Container } from './styles'
-import { api } from '../../services/api'
 import { CardProduct } from '../CardProduct'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { Title } from '../Title'
 
-export const OffersCarousel = () => {
-  const [offers, setOffers] = useState([])
-  useEffect(() => {
-    const loadProducts = async () => {
-      const { data } = await api.get('/products')
-      const onlyOffers = data
-        .filter((product) => product.offer)
-        .map((product) => ({
-          formatedPrice: formatCurrency(product.price),
-          ...product,
-        }))
-      setOffers(onlyOffers)
-    }
-    loadProducts()
-  }, [])
+export const OffersCarousel = ({ products }) => {
+  const onlyOffers = products
+    .filter((product) => product.offer)
+    .map((product) => ({
+      formatedPrice: formatCurrency(product.price),
+      ...product,
+    }))
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -49,11 +41,15 @@ export const OffersCarousel = () => {
         partialVisbile={false}
         itemClass="carousel-item"
       >
-        {offers &&
-          offers.map((product) => (
+        {onlyOffers &&
+          onlyOffers.map((product) => (
             <CardProduct key={product.id} product={product} />
           ))}
       </Carousel>
     </Container>
   )
+}
+
+OffersCarousel.propTypes = {
+  products: PropTypes.array.isRequired,
 }
