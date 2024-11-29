@@ -51,7 +51,6 @@ export const Login = () => {
           validateStatus: () => true,
         }
       )
-      setLoading(false)
       if (status === 200 || status === 201) {
         toast.success('Login realizado com sucesso!')
         setTimeout(() => navigate('/home'), 2000)
@@ -64,6 +63,8 @@ export const Login = () => {
     } catch (error) {
       toast.error('Erro no servidor, tente novamente!')
       console.log(error.response?.data)
+    } finally {
+      setLoading(false)
     }
   }
   return (

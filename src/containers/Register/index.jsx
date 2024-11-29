@@ -57,7 +57,6 @@ export const Register = () => {
           validateStatus: () => true,
         }
       )
-      setLoading(false)
       if (status === 200 || status === 201) {
         toast.success('Cadastro realizado com sucesso!')
         setTimeout(() => navigate('/entrar'), 2000)
@@ -69,6 +68,8 @@ export const Register = () => {
     } catch (error) {
       toast.error('Erro no servidor, tente novamente!')
       console.log(error.response?.data)
+    } finally {
+      setLoading(false)
     }
   }
   return (

@@ -30,13 +30,14 @@ export const CartResume = () => {
     try {
       setLoading(true)
       const { data } = await api.post('/create-payment-intent', { products })
-      setLoading(false)
       navigate(paths.Checkout, {
         state: data,
       })
     } catch (error) {
       toast.error('Erro inesperado, tente novamente!')
       console.log(error.response?.data)
+    } finally {
+      setLoading(false)
     }
   }
 
