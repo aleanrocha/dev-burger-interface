@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useStripe } from '@stripe/react-stripe-js'
 import '../../components/Stripe/styles.css'
 import { paths } from '../../constants/paths'
+import { Button } from '../../components'
 
 const SuccessIcon = (
   <svg
@@ -97,6 +99,7 @@ const STATUS_CONTENT_MAP = {
 
 export const CompletePayment = () => {
   const stripe = useStripe()
+  const navigate = useNavigate()
 
   const [status, setStatus] = useState('default')
   const [intentId, setIntentId] = useState(null)
@@ -183,9 +186,10 @@ export const CompletePayment = () => {
             </svg>
           </a>
         )}
-        <a id="retry-button" href={STATUS_CONTENT_MAP[status].url}>
-          {STATUS_CONTENT_MAP[status].btnText}
-        </a>
+        <Button
+          click={() => navigate(paths.Menu)}
+          text={STATUS_CONTENT_MAP[status].btnText}
+        />
       </div>
     </div>
   )
