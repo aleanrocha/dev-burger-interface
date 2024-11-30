@@ -6,6 +6,7 @@ import {
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Copy, CheckCircle } from '@phosphor-icons/react'
 
 import { useCart } from '../../../hooks/CartContext'
 import { useStripe, useElements } from '@stripe/react-stripe-js'
@@ -17,6 +18,7 @@ export const CheckoutForm = () => {
   const stripe = useStripe()
   const elements = useElements()
   const [isLoading, setIsLoading] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const navigate = useNavigate()
   const { cartProducts, clearCart } = useCart()
@@ -77,9 +79,22 @@ export const CheckoutForm = () => {
     setIsLoading(false)
   }
 
+  const copyToClipboard = (text) => {
+    setCopied(true)
+    navigator.clipboard.writeText(text)
+    setTimeout(() => setCopied(false), 500)
+  }
+
   return (
     <div id="payment-container">
       <form id="payment-form" onSubmit={handleSubmit}>
+        <p
+          id="copyToClipboard"
+          onClick={() => copyToClipboard('4242 4242 4242 4242')}
+        >
+          Cartão valido:{' '}
+          <span>4242 4242 4242 4242 {copied ? <CheckCircle /> : <Copy />}</span>
+        </p>
         <LinkAuthenticationElement id="link-authentication-element" />
         <PaymentElement id="payment-element" />
         <button disabled={isLoading || !stripe || !elements} id="submit">

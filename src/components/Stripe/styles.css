@@ -10,10 +10,31 @@
 
 #payment-form {
   width: 480px;
+  text-align: center;
 }
 
 #payment-form > * {
   margin: 10px 0;
+}
+
+#copyToClipboard {
+  font-size: 0.9rem;
+  color: #30313D;
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+}
+
+#copyToClipboard > span {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  & > svg {
+    font-size: 1.2rem;
+  }
 }
 
 #payment-container button {
